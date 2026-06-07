@@ -43,6 +43,7 @@ router.post('/', async (req, res) => {
     };
 
     jobs.push(newJob);
+    
     writeJobs(jobs);
     logEvent(`Job created - ID ${newJob.id} - ${newJob.firstName} ${newJob.lastName} - ${newJob.jobType}`);
     sendSlackJobCreated(newJob)

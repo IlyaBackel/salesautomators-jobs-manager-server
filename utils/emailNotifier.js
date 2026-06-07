@@ -11,11 +11,6 @@ async function sendCompletionEmail(job) {
 
   console.log('📧 About to send completion email for job', EMAIL, EMAIL_PASS);
 
-  if (!EMAIL || !EMAIL_PASS) {
-    console.log("Email credentials missing. Would send to:", job.email);
-    return;
-  }
-
   const transporter = nodemailer.createTransport({
     host: "smtp.mail.ru",
     port: 465,
@@ -37,8 +32,6 @@ async function sendCompletionEmail(job) {
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log(process.env.EMAIL, process.env.EMAIL_PASS);
-    console.log(`Completion email sent to ${job.email}`);
   } catch (error) {
     console.error("Failed to send email:", error);
   }
